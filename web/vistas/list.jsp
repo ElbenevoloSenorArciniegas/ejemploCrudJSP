@@ -41,7 +41,7 @@
                         <td><%= persona.getDNI()%></td>
                         <td><%= persona.getNombres()%></td>
                         <td>
-                            <a>Edit</a><a> - </a>
+                            <a href="Controlador?action=update&idPersona=<%= persona.getId() %>">Edit</a><a> - </a>
                             <a>Remove</a>
                         </td>
                     </tr>

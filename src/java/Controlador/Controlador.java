@@ -24,6 +24,7 @@ public class Controlador extends HttpServlet {
 
     String list = "vistas/list.jsp";
     String insert = "vistas/insert.jsp";
+    String update = "vistas/update.jsp";
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -72,11 +73,18 @@ public class Controlador extends HttpServlet {
         }else if(action.equals("Agregar")){
             String DNI = request.getParameter("txtDni");
             String nombres = request.getParameter("txtNombres");
-            PersonaDAO.insertar(0, DNI, nombres);
+            PersonaDAO.insertar(DNI, nombres);
+            acceso = list;
+        }else if(action.equals("update")){
+            request.setAttribute("idPersona", request.getAttribute("idPersona"));
+            acceso = update;
+        }else if(action.equals("Editar")){
+            int ID = Integer.parseInt(request.getParameter("txtID"));
+            String DNI = request.getParameter("txtDni");
+            String nombres = request.getParameter("txtNombres");
+            PersonaDAO.update(ID, DNI, nombres);
             acceso = list;
         }
-        System.out.println(acceso);
-        System.out.println(action);
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
     }

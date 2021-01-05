@@ -18,8 +18,8 @@ public class PersonaDAO {
     
     private static ArrayList<Persona> init(){
         ArrayList<Persona> p = new ArrayList<>();
-        p.add(new Persona(1,"1029","Perdo Páramo"));
-        p.add(new Persona(2,"1030","Juan Rulfo"));
+        p.add(new Persona(0,"1029","Perdo Páramo"));
+        p.add(new Persona(1,"1030","Juan Rulfo"));
         return p;
     }
     
@@ -27,8 +27,18 @@ public class PersonaDAO {
         return personas;
     }
     
-    public static void insertar(int Id, String DNI, String nombres){
-        personas.add(new Persona(Id, DNI, nombres));
+    public static void insertar(String DNI, String nombres){
+        int id = personas.size();
+        personas.add(new Persona(id, DNI, nombres));
     }
     
+    public static Persona get(int Id){
+        return personas.get(Id);
+    }
+    
+    public static void update(int Id, String DNI, String nombres){
+        Persona persona = personas.get(Id);
+        persona.setDNI(DNI);
+        persona.setNombres(nombres);
+    }
 }
